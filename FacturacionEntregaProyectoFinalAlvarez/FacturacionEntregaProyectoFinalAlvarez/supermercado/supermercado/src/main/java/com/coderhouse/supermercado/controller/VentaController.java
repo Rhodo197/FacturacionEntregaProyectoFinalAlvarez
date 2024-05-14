@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coderhouse.supermercado.modelos.Cliente;
-import com.coderhouse.supermercado.modelos.Comprobante;
 import com.coderhouse.supermercado.modelos.Producto;
 import com.coderhouse.supermercado.modelos.Venta;
 import com.coderhouse.supermercado.service.VentaService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/venta")
@@ -26,8 +30,14 @@ public class VentaController {
 	@Autowired
 	VentaService ventaService;
 	
-	//hacer una venta
-	@PostMapping(value = "/realizarVenta", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@Operation(summary = "creacion de una venta", description = "permite la creacion de una venta")
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "400", description = "error de solicitud",
+			content = { @Content(mediaType = "application/json")})
+	})
+	@PostMapping(value = "/realizar-venta", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Venta> realizarVenta(@RequestBody Venta venta,@RequestBody Cliente cliente,@RequestBody Producto producto, Integer cantidad){
 		try {
 			Venta ventas = ventaService.nuevaVenta(venta, cantidad, cantidad, cantidad);
@@ -37,8 +47,14 @@ public class VentaController {
 		}
 	}
 	
-	//ver una venta ya hecha
-	@GetMapping(value = "{numeroOperacion}/verVenta", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@Operation(summary = "obtencion de una venta", description = "permite ver una venta hecha")
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "404", description = "not found",
+			content = { @Content(mediaType = "application/json")})
+	})
+	@GetMapping(value = "{numeroOperacion}/ver-venta", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Venta> getVenta(@PathVariable("numeroOperacion") Integer numeroOperacion){
 		try {
 			
@@ -55,8 +71,14 @@ public class VentaController {
 		}
 	}
 	
-	//ver la lista de ventas que se han hecho
-	@GetMapping(value = "/listaVentas", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@Operation(summary = "obtencion de lista de ventas", description = "permite obtener una lista de las ventas hechas")
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "500", description = "error de servidor",
+			content = { @Content(mediaType = "application/json")})
+	})
+	@GetMapping(value = "/lista-ventas", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<Venta>> listaDeVentas(){
 		try {
 			

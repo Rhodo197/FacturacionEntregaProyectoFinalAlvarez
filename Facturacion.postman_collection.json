@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://Localhost:8084/producto/ListaProductos",
+					"raw": "http://Localhost:8084/producto/lista-productos",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -20,7 +20,7 @@
 					"port": "8084",
 					"path": [
 						"producto",
-						"ListaProductos"
+						"lista-productos"
 					]
 				}
 			},
@@ -32,7 +32,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://Localhost:8084/producto/2/getProducto",
+					"raw": "http://Localhost:8084/producto/2/get-producto",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -41,7 +41,7 @@
 					"path": [
 						"producto",
 						"2",
-						"getProducto"
+						"get-producto"
 					]
 				}
 			},
@@ -54,7 +54,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\":\"pepitos\",\r\n    \"precio\": 7500,\r\n    \"cantidad\": 0,\r\n    \"stock\": 200\r\n}",
+					"raw": "{\r\n    \"nombre\":\"melbas\",\r\n    \"precio\": 900,\r\n    \"cantidad\": 0,\r\n    \"stock\": 200\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -62,7 +62,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://Localhost:8084/producto/nuevoProducto",
+					"raw": "http://Localhost:8084/producto/nuevo-producto",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -70,7 +70,7 @@
 					"port": "8084",
 					"path": [
 						"producto",
-						"nuevoProducto"
+						"nuevo-producto"
 					]
 				}
 			},
@@ -154,7 +154,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://Localhost:8084/cliente/listaDeClientes",
+					"raw": "http://Localhost:8084/cliente/lista-de-clientes",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -162,7 +162,7 @@
 					"port": "8084",
 					"path": [
 						"cliente",
-						"listaDeClientes"
+						"lista-de-clientes"
 					]
 				}
 			},
@@ -186,7 +186,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://Localhost:8084/cliente/18536491/getCliente",
+					"raw": "http://Localhost:8084/cliente/18536491/get-cliente",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -195,7 +195,7 @@
 					"path": [
 						"cliente",
 						"18536491",
-						"getCliente"
+						"get-cliente"
 					]
 				}
 			},
@@ -208,7 +208,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n     \"dni\": 43934737,\r\n     \"nombre\": \"Alejandro\",\r\n     \"apellido\":\"Poretti\",\r\n     \"telefono\": 5009780    \r\n}",
+					"raw": "{\r\n     \"dni\": 39897683,\r\n     \"nombre\": \"Ivan\",\r\n     \"apellido\":\"Perez\",\r\n     \"telefono\": 1118389\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -216,7 +216,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://Localhost:8084/cliente/nuevoCliente",
+					"raw": "http://Localhost:8084/cliente/nuevo-cliente",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -224,7 +224,7 @@
 					"port": "8084",
 					"path": [
 						"cliente",
-						"nuevoCliente"
+						"nuevo-cliente"
 					]
 				}
 			},
@@ -297,7 +297,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dni\": 43934737,\r\n    \"codigo\": 2,\r\n    \"cantidad\": 3\r\n}",
+					"raw": "{\r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -305,7 +305,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://Localhost:8084/venta/realizarVenta",
+					"raw": "http://Localhost:8084/venta/realizar-venta",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -313,7 +313,7 @@
 					"port": "8084",
 					"path": [
 						"venta",
-						"realizarVenta"
+						"realizar-venta"
 					]
 				}
 			},
@@ -337,7 +337,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://Localhost:8084/venta/listaVentas",
+					"raw": "http://Localhost:8084/venta/lista-ventas",
 					"protocol": "http",
 					"host": [
 						"Localhost"
@@ -345,7 +345,7 @@
 					"port": "8084",
 					"path": [
 						"venta",
-						"listaVentas"
+						"lista-ventas"
 					]
 				}
 			},

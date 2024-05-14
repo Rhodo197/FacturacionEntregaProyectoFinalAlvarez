@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coderhouse.supermercado.modelos.Cliente;
 import com.coderhouse.supermercado.service.ClienteService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
@@ -25,8 +30,14 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
-	//traer una lista de clientes
-	@GetMapping(value = "/listaDeClientes", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@Operation(summary = "listar clientes", description = "permite traer una lista de clientes")
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "500", description = "error de servidor",
+			content = { @Content(mediaType = "application/json")})
+	})
+	@GetMapping(value = "/lista-de-clientes", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<Cliente>> listarClientes(){
 		//tiene que devuolver una repuesta del servidor
 		try {
@@ -36,10 +47,15 @@ public class ClienteController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); //error 500
 		}
 	}
+
+	@Operation(summary = "obtencion de cliente", description = "permite buscar un cliente por dni")
 	
-	
-	//traer un cliente por dni
-	@GetMapping(value = "/{dni}/getCliente", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "400", description = "No existe el cliente",
+			content = { @Content(mediaType = "application/json")})
+	})
+	@GetMapping(value = "/{dni}/get-cliente", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Cliente> getClientePorDni(@PathVariable("dni") Integer dni){
 		try {
 			
@@ -57,8 +73,14 @@ public class ClienteController {
 		}
 	}
 	
-	//agregar un nuevo cliente
-	@PostMapping(value = "/nuevoCliente", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@Operation(summary = "creacion de cliente", description = "permite la creacion de un nuevo cliente")
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "400", description = "error en el ingreso de datos",
+			content = { @Content(mediaType = "application/json")})
+	})
+	@PostMapping(value = "/nuevo-cliente", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Cliente> agregarCliente(@RequestBody Cliente cliente){
 		
 		try {
@@ -70,7 +92,13 @@ public class ClienteController {
 		
 	}
 	
-	//actualizar un cliente
+	@Operation(summary = "actualizacion del cliente", description = "permite actualizar los datos del cliente")
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "500", description = "error de servidor",
+			content = { @Content(mediaType = "application/json")})
+	})
 	@PutMapping(value = "/{dni}/actualizar", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Cliente> actualizarCliente(@PathVariable ("dni") Integer dni, @RequestBody Cliente cliente){
 		
@@ -84,6 +112,13 @@ public class ClienteController {
 			}	
 	}
 	
+	@Operation(summary = "delete cliente", description = "permite que se elimine un cliente existente")
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "operacion exitosa"),
+			@ApiResponse(responseCode = "404", description = "cliente no encontrado",
+			content = { @Content(mediaType = "application/json")})
+	})
 	@DeleteMapping(value = "/{dni}/eliminar")
 	public ResponseEntity<Void> eliminarCliente(@PathVariable ("dni") Integer dni){
 		

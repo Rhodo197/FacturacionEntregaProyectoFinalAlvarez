@@ -4,6 +4,8 @@ import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Hashtable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,7 +25,7 @@ public class VentaService {
 	ClienteRepository clienteRepository;
 	ProductoRepository productoRepository;
 	
-	
+	//no me funciono esta asi que uso el LocalDateTime
 	private final String HORA_URL = "http://worldtimeapi.org/api/timezone/America/Argentina[Buenos Aires]";
 	private RestTemplate restTemplate;
 	
@@ -71,7 +73,6 @@ public class VentaService {
 		
 		Long precioTotal = producto.getCantidad() * producto.getPrecio();
 		
-		LocalDateTime fechaVenta = LocalDateTime.now();
 		
 		Venta ventaFinal = new Venta();
 		
@@ -79,7 +80,7 @@ public class VentaService {
 		venta.setCantidad(cantidad);
 		venta.setProductos(productos);
 		venta.setPrecioTotal(precioTotal);;
-		venta.setFecha(fechaVenta);
+		venta.setFecha(venta.getFecha());
 		return ventaRepository.save(ventaFinal);
 		
 	}

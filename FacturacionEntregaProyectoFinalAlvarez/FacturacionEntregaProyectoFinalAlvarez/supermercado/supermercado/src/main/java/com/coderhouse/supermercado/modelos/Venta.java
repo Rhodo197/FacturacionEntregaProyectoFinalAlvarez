@@ -1,11 +1,13 @@
 package com.coderhouse.supermercado.modelos;
 
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,23 +25,35 @@ public class Venta {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Schema(description= "id autogenerado por el la bbdd", requiredMode = Schema.RequiredMode.REQUIRED , example ="1")
 	private Integer numeroOperacion;
 	
 	@Column(name = "cantidad")
+	@Schema(description= "cantidad del producto ingresado por el usuario", requiredMode = Schema.RequiredMode.REQUIRED , example ="3")
 	private int cantidad;
 	
 	@Column (name = "precioTotal")
+	@Schema(description= "precio total que lo calcula la aplicacion", requiredMode = Schema.RequiredMode.REQUIRED , example ="18000")
 	private long precioTotal;
 	
-	private LocalDate fecha;
+	@Schema(description= "hora y fecha actual brindada por java", requiredMode = Schema.RequiredMode.REQUIRED , example ="Mon-18:45:23")
+	private LocalDateTime fecha;
+	
+	//para obtener una lista por clave-valor
+	static Hashtable<String, Producto> lista = new Hashtable<>();
 	
 	
-	public LocalDate getFecha() {
-		return fecha;
+
+	public static Hashtable<String, Producto> getLista() {
+		return lista;
 	}
 
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
+	public static void setLista(Hashtable<String, Producto> lista) {
+		Venta.lista = lista;
+	}
+
+	public LocalDateTime getFecha() {
+		return fecha;
 	}
 
 	@ManyToOne
